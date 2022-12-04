@@ -62,6 +62,20 @@ public class Input_InBody_Result {
                 complete=sc.nextInt();
                 if(complete==1)
                 {
+                    ResultSet rs=stmt.executeQuery("SELECT 학번 FROM 회원 WHERE 학번="+usernum);
+                    while(rs.next())
+                    {
+                        if(usernum==rs.getInt(1))
+                        {
+                            try{
+                                stmt.executeUpdate("DELETE FROM 전체학생InBody WHERE 학번="+usernum);
+                                break;
+                            }catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
 
                     LocalDateTime now = LocalDateTime.now();
                     String Input_data= now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
