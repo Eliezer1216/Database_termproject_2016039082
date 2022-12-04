@@ -31,6 +31,8 @@ public class Login {
             if(Password==rs.getInt(2))
             {
                 System.out.println("\n로그인에 성공하셨습니다!!");
+                UserScreen userScreen=new UserScreen();
+                UserScreen.F_UserScreen();
             }
             else {
                 System.out.println("\n로그인에 실패하셨습니다!!");
