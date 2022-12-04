@@ -5,14 +5,14 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Login {
-    //public int Studentnum;
+    public int Studentnum;
     //public int password;
     public int backmode;
     Scanner sc=new Scanner((System.in));
 
     public int Login()
     {
-        int Studentnum;
+
         int Password;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -32,7 +32,7 @@ public class Login {
             {
                 System.out.println("\n로그인에 성공하셨습니다!!");
                 UserScreen userScreen=new UserScreen();
-                UserScreen.F_UserScreen();
+                UserScreen.F_UserScreen(Studentnum);
             }
             else {
                 System.out.println("\n로그인에 실패하셨습니다!!");
