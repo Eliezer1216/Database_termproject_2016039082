@@ -11,6 +11,7 @@ public class Input_InBody_Result {
     public String weight;
     public String muscle;
     public String body_fat_percentage;
+    public int TypeID;
     Scanner sc=new Scanner((System.in));
     UserScreen userScreen=new UserScreen();
     public void Input_InBody(int usernum)
@@ -62,6 +63,8 @@ public class Input_InBody_Result {
                 complete=sc.nextInt();
                 if(complete==1)
                 {
+                    Body_type body=new Body_type();
+                    TypeID=body.Decide_Body_type(weight,muscle,body_fat_percentage);
                     ResultSet rs=stmt.executeQuery("SELECT 학번 FROM 회원 WHERE 학번="+usernum);
                     while(rs.next())
                     {
@@ -85,7 +88,7 @@ public class Input_InBody_Result {
                     preparedStatement.setString(2,weight);
                     preparedStatement.setString(3,muscle);
                     preparedStatement.setString(4,body_fat_percentage);
-                    preparedStatement.setInt(5,3);
+                    preparedStatement.setInt(5,TypeID);
                     preparedStatement.setString(6,Input_data);
                     int count=preparedStatement.executeUpdate();
                     if(count==0)
