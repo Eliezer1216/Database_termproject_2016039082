@@ -9,48 +9,8 @@ public class Main {
     public static void main(String[] args){
 
         int mode;
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://192.168.56.102:4567/software_InBody ", "root",
-                    "7632"); // software_InBody 데이터베이스에 접근
-            Statement stmt = (Statement) con.createStatement();
-            do {
-                mode=FirstScreen();
-                if((mode!=1)&&(mode!=2)&&(mode!=3))
-                    System.out.println("\n다시 입력하세요!!");
-            }while((mode!=1)&&(mode!=2)&&(mode!=3));
-            if((mode==1))
-            {
-                Login login=new Login();
-                login.Login();
-
-            }
-            else if((mode==2))
-            {
-                System.out.println("2번 기능");
-            }
-            else if((mode==3))
-            {
-                System.out.println("3번 기능");
-            }
-            else
-            {
-
-
-
-            }
-            // ResultSet rs=stmt.executeQuery("SELECT * FROM 회원");
-            // while(rs.next())
-            //System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getString(4)+" "+rs.getInt(5));
-            //con.close();
-        }catch(Exception e)
-        {
-            System.out.println(e);
-        }
-
-
-
-
+        mode=FirstScreen();
+        FirstScreen_Function(mode);
 
     }
     public static int FirstScreen()
@@ -65,6 +25,48 @@ public class Main {
         System.out.println("\n원하는 기능의 숫자를 입력하세요 :");
         F_mode=sc.nextInt();
         return F_mode;
+    }
+    public static void FirstScreen_Function(int mode)
+    {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://192.168.56.102:4567/software_InBody ", "root",
+                    "7632"); // software_InBody 데이터베이스에 접근
+            Statement stmt = (Statement) con.createStatement();
+            /*do {
+                mode=FirstScreen();
+                if((mode!=1)&&(mode!=2)&&(mode!=3))
+                    System.out.println("\n다시 입력하세요!!");
+            }while((mode!=1)&&(mode!=2)&&(mode!=3));*/
+            while((mode!=1)&&(mode!=2)&&(mode!=3))
+            {
+                mode=FirstScreen();
+                if((mode!=1)&&(mode!=2)&&(mode!=3))
+                    System.out.println("\n다시 입력하세요!!");
+            }
+            if((mode==1))
+            {
+                Login login=new Login();
+                login.Login();
+
+            }
+            else if((mode==2))
+            {
+                Sign_Up signup=new Sign_Up();
+                signup.sign_up();
+            }
+            else if((mode==3))
+            {
+                //프로그램 종료
+            }
+            // ResultSet rs=stmt.executeQuery("SELECT * FROM 회원");
+            // while(rs.next())
+            //System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getString(4)+" "+rs.getInt(5));
+            //con.close();
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
     }
 
 }
